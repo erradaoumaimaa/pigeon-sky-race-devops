@@ -1,11 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
+  standalone : false,
   templateUrl: './app.component.html',
-  standalone: false,
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'frontend';
+export class  AppComponent implements OnInit {
+  isLoggedIn = false;
+  username?: string;
+
+  constructor(private tokenService: TokenService) { }
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenService.getUser();
+      this.username = user.username;
+    }
+  }
+
+  logout(): void {
+    this.tokenService.signOut();
+    window.location.reload();
+  }
 }

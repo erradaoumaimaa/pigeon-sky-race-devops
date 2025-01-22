@@ -11,11 +11,12 @@ import com.PigeonSkyRace.PigeonSkyRace.dto.request.UserRequest;
 import com.PigeonSkyRace.PigeonSkyRace.dto.response.LoginResponse;
 import com.PigeonSkyRace.PigeonSkyRace.dto.response.UserResponse;
 import com.PigeonSkyRace.PigeonSkyRace.service.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Tag(name = "Auth API", description = "Operations related to authentication")
 @RequiredArgsConstructor
