@@ -22,7 +22,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     private final CustomUserDetailsService userDetailsService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Value("${spring.security.test.password-bypass:false}")
     private boolean isPasswordBypassEnabled;
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
