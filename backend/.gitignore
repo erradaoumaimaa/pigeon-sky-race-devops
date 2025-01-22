@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Environment files
+.env
+
+# Docker files
+docker-compose.override.yml
+docker-compose.yml
+**/logs/
+
+# Maven files
+.mvn/
+*.log
