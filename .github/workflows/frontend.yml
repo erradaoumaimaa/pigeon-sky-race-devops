@@ -14,23 +14,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
 
-      - name: Install Dependencies
-        working-directory: ./frontend
-        run: npm install
+      - name: Build Docker Image
+        run: |
+          docker build -t pigeon-sky-race-frontend ./frontend
+          docker run --rm pigeon-sky-race-frontend npm run test -- --watch=false --browsers=ChromeHeadless
 
-      - name: Run Unit Tests
-        working-directory: ./frontend
-        run: npm run test -- --watch=false --browsers=ChromeHeadless
-
-      - name: Build Frontend
-        working-directory: ./frontend
-        run: npm run build --prod
-
+      - name: Build Frontend Docker Image
+        run: |
+          docker build -t pigeon-sky-race-frontend ./frontend
+          
   deploy:
     name: Deploy Frontend to Vercel
     runs-on: ubuntu-latest
