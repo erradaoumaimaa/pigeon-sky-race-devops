@@ -2,6 +2,8 @@ name: Frontend Pigeon Sky Race CI/CD Pipeline
 
 on:
   push:
+    branches:
+      - test
     paths:
       - 'frontend/**'
 
