@@ -8,8 +8,7 @@ on:
       - 'frontend/**'
 
 jobs:
-  build:
-    name: Build and Test Frontend
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  
+          node-version: 18
 
       - name: Install Dependencies
         working-directory: ./frontend
@@ -33,6 +32,5 @@ jobs:
         working-directory: ./frontend
         run: npm run build --configuration=production
 
-      # Optionnel si tu veux dockeriser
       - name: Build Docker Image
         run: docker build -t frontend-app ./frontend
