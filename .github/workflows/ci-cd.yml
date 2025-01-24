@@ -13,16 +13,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Debug Information
-        run: |
-          echo "Current branch: ${{ github.ref }}"
-          echo "Repository: ${{ github.repository }}"
-          ls -R frontend/
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install Dependencies
         working-directory: ./frontend
@@ -34,10 +28,7 @@ jobs:
 
       - name: Build Frontend
         working-directory: ./frontend
-        run: npm run build --configuration=production
-
-      - name: Build Docker Image
-        run: docker build -t frontend-app ./frontend
+        run: npm run build --prod
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
