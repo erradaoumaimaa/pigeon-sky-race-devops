@@ -22,11 +22,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: '18'
 
       - name: Install Dependencies
         working-directory: ./frontend
-        run: npm ci 
+        run: npm ci
 
       - name: Run Unit Tests
         working-directory: ./frontend
@@ -38,7 +38,8 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t frontend-app ./frontend
-  - name: Deploy to Vercel
+
+      - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
