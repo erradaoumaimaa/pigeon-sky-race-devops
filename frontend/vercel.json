@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/dist/frontend/browser/**/*",
+      "use": "@vercel/static"
+    }
+  ]
+}
